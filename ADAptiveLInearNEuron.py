@@ -56,8 +56,6 @@ ax[1].set_ylabel('sum squared error')
 ax[1].legend()
 plt.savefig("page41.pdf")
 
-'''
-
 # Page 32
 
 from matplotlib.colors import ListedColormap
@@ -90,10 +88,25 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
                     label=cl,
                     edgecolor='black')
 
+# Page 42
+
+X1_std = np.copy(X1)
+X1_std[:,0] = (X1[:,0]-X1[:,0].mean()) / X1[:,0].std()
+X1_std[:,1] = (X1[:,1]-X1[:,1].mean()) / X1[:,1].std()
+
+ada = AdalineGD(n_iter=15, eta=0.01)
+ada.fit(X1_std,y1)
+
 plt.figure()
-plot_decision_regions(X1, y1, classifier=ppn)
-plt.xlabel('sepal length [cm]')
-plt.ylabel('petal length [cm]')
+plot_decision_regions(X1_std, y1, classifier=ada)
+plt.xlabel('sepal length [dimensionless]')
+plt.ylabel('petal length [dimensionless]')
 plt.legend(loc='upper left')
-plt.savefig("page33.pdf")
-'''
+plt.savefig("page43a.pdf")
+
+plt.figure()
+plt.plot(range(1, len(ada.cost_) + 1), ada.cost_, color='black', marker = '^',label="$\eta$=0.01, std")
+plt.xlabel('Epochs')
+plt.ylabel('sum squared error')
+plt.legend()
+plt.savefig("page43b.pdf")
