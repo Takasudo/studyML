@@ -1,15 +1,13 @@
+# Common : dataset
+
 from sklearn import datasets
 import numpy as np
 iris = datasets.load_iris()
 X = iris.data[:, [2,3]]
 y = iris.target
-print('Class labels : ', np.unique(y))
 
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1, stratify=y)
-print('Labels count in y : ',np.bincount(y))
-print('Labels count in y_train : ',np.bincount(y_train))
-print('Labels count in y_test : ',np.bincount(y_test))
 
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
@@ -17,17 +15,7 @@ sc.fit(X_train) # calculate mean and deviation for X_train
 X_train_std = sc.transform(X_train) 
 X_test_std = sc.transform(X_test)
 
-from sklearn.linear_model import Perceptron
-ppn = Perceptron(max_iter=40, eta0=0.1, random_state=1)
-ppn.fit(X_train_std, y_train)
-
-y_pred = ppn.predict(X_test_std)
-print('Misclassified samples : %d' % (y_test != y_pred).sum())
-
-from sklearn.metrics import accuracy_score
-print('Accuracy %.2f' % accuracy_score(y_test, y_pred))
-
-print('Accuracy %.2f' % ppn.score(X_test_std, y_test))
+# Common : plot_decision_regions
 
 from matplotlib.colors import ListedColormap
 import matplotlib.pyplot as plt
@@ -71,47 +59,39 @@ def plot_decision_regions(X, y, classifier, test_idx = None, resolution=0.02):
                     s=100,
                     label='test set')
 
+# Common : combined std data
+
 X_combined_std = np.vstack((X_train_std, X_test_std))
 y_combined = np.hstack((y_train, y_test))
-plot_decision_regions(X=X_combined_std, y=y_combined, classifier=ppn, test_idx=range(105,150))
-plt.xlabel("petal length (standardized)")
-plt.ylabel("petal width (standardized)")
-plt.legend(loc='upper left')
+
+# Page 81 
+
+np.random.seed(1)
+X_xor = np.random.randn(200, 2)
+y_xor = np.logical_xor(X_xor[:,0] >0, X_xor[:, 1]>0)
+y_xor = np.where(y_xor, 1, -1)
+plt.scatter(X_xor[y_xor==1,0], X_xor[y_xor==1,1], c='blue', marker='x', label='1')
+plt.scatter(X_xor[y_xor==-1,0], X_xor[y_xor==-1,1], c='red', marker='s', label='-1')
+plt.xlim(-3,3)
+plt.ylim(-3,3)
+plt.legend()
 plt.tight_layout()
-plt.savefig("page58.pdf")
-
-# Page 70
-
-from sklearn.linear_model import LogisticRegression
-lr = LogisticRegression(C=100.0, random_state=1, solver='lbfgs', multi_class='auto')
-lr.fit(X_train_std, y_train)
-plt.figure()
-plot_decision_regions(X=X_combined_std, y=y_combined, classifier=lr, test_idx=range(105,150))
-plt.xlabel("petal length (standardized)")
-plt.ylabel("petal width (standardized)")
-plt.legend(loc='upper left')
-plt.tight_layout()
-plt.savefig("page70.pdf")
-
-# Page 71
-
-N_tmp = 3 
-prob = lr.predict_proba(X_test_std[:N_tmp,:])
-predclass1 = prob.argmax(axis=1)
-predclass2 = lr.predict(X_test_std[:N_tmp,:])
-print(prob)
-print(predclass1)
-print(predclass2)
-
-# Page 79
+plt.savefig("page82.pdf")
 
 from sklearn.svm import SVC
-svm = SVC(kernel = 'linear', C=1.0, random_state=1)
-svm.fit(X_train_std, y_train)
+
+svm = SVC(kernel = 'rbf', gamma = 0.1, C=1.0, random_state=1)
+svm.fit(X_xor, y_xor)
 plt.figure()
-plot_decision_regions(X=X_combined_std, y=y_combined, classifier=svm, test_idx=range(105,150))
-plt.xlabel("petal length (standardized)")
-plt.ylabel("petal width (standardized)")
-plt.legend(loc='upper left')
+plot_decision_regions(X_xor, y_xor, classifier=svm)
+plt.legend()
 plt.tight_layout()
-plt.savefig("page80.pdf")
+plt.savefig("page85.pdf")
+
+svm2 = SVC(kernel = 'rbf', gamma = 10., C=1.0, random_state=1)
+svm2.fit(X_xor, y_xor)
+plt.figure()
+plot_decision_regions(X_xor, y_xor, classifier=svm2)
+plt.legend()
+plt.tight_layout()
+plt.savefig("page85_large_gamma.pdf")
