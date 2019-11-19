@@ -144,36 +144,3 @@ dot_data = export_graphviz(tree,
 
 graph = graph_from_dot_data(dot_data)
 graph.write_png('page96.png')
-
-# Page 99
-
-from sklearn.ensemble import RandomForestClassifier
-
-forest = RandomForestClassifier(criterion='gini',
-                                n_estimators=25,
-                                random_state=1)
-forest.fit(X_train, y_train)
-plt.figure()
-plot_decision_regions(X=X_combined, y=y_combined, classifier=forest, test_idx=range(105,150))
-plt.xlabel("petal length (cm)")
-plt.ylabel("petal width (cm)")
-plt.legend(loc='upper left')
-plt.tight_layout()
-plt.savefig("page99.pdf")
-
-# page 101
-
-from sklearn.neighbors import KNeighborsClassifier
-
-knn = KNeighborsClassifier(n_neighbors=5,
-                            p=2,
-                            metric='minkowski')
-
-knn.fit(X_train_std, y_train)
-plt.figure()
-plot_decision_regions(X=X_combined_std, y=y_combined, classifier=knn, test_idx=range(105,150))
-plt.xlabel("petal length (std)")
-plt.ylabel("petal width (std)")
-plt.legend(loc='upper left')
-plt.tight_layout()
-plt.savefig("page102.pdf")
