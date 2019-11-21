@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3a929a13-d7d1-4120-b92f-7c4cda9d3041" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/scikittest.py" beforeDir="false" afterPath="$PROJECT_DIR$/scikittest.py" afterDir="false" />
-    </list>
+    <list default="true" id="3a929a13-d7d1-4120-b92f-7c4cda9d3041" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scikittest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="161" column="19" selection-start-line="161" selection-start-column="19" selection-end-line="161" selection-end-column="19" />
+            <state relative-caret-position="254">
+              <caret line="173" column="25" lean-forward="true" selection-start-line="173" selection-start-column="25" selection-end-line="173" selection-end-column="25" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -151,12 +149,12 @@
       <updated>1572354224696</updated>
       <workItem from="1572354226214" duration="439000" />
       <workItem from="1574170754182" duration="624000" />
-      <workItem from="1574173557534" duration="104000" />
+      <workItem from="1574173557534" duration="400000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1167000" />
+    <option name="totallyTimeSpent" value="1463000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -186,7 +184,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3299363" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.38853502" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.40636942" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -208,8 +206,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scikittest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="161" column="19" selection-start-line="161" selection-start-column="19" selection-end-line="161" selection-end-column="19" />
+        <state relative-caret-position="254">
+          <caret line="173" column="25" lean-forward="true" selection-start-line="173" selection-start-column="25" selection-end-line="173" selection-end-column="25" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
