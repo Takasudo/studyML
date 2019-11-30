@@ -1,8 +1,6 @@
 import pandas as pd
 print("")
 
-# 4.1 missing values
-
 from io import StringIO
 
 csv_data = '''A,B,C,D
@@ -28,4 +26,4 @@ imputed_data = imr.transform(df.values)
 print("")
 print(imputed_data)
 
-print("")
+
